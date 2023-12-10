@@ -1,0 +1,60 @@
+import { FunctionComponent, useEffect } from "react";
+import styles from "./MacBookPro147.module.css";
+
+const MacBookPro147: FunctionComponent = () => {
+  useEffect(() => {
+    const scrollAnimElements = document.querySelectorAll(
+      "[data-animate-on-scroll]"
+    );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting || entry.intersectionRatio > 0) {
+            const targetElement = entry.target;
+            targetElement.classList.add(styles.animate);
+            observer.unobserve(targetElement);
+          }
+        }
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    for (let i = 0; i < scrollAnimElements.length; i++) {
+      observer.observe(scrollAnimElements[i]);
+    }
+
+    return () => {
+      for (let i = 0; i < scrollAnimElements.length; i++) {
+        observer.unobserve(scrollAnimElements[i]);
+      }
+    };
+  }, []);
+  return (
+    <div className={styles.macbookPro147}>
+      <b className={styles.enterYourPassword}>{`Enter your Password `}</b>
+      <div className={styles.macbookPro147Child} />
+      <div className={styles.macbookPro147Item} />
+      <b className={styles.emcomserv}>EMCOMSERV</b>
+      <b className={styles.rememberMyId}>Remember my ID</b>
+      <div className={styles.macbookPro147Inner} />
+      <b className={styles.findMyId}>Find my ID</b>
+      <div className={styles.lineDiv} />
+      <div className={styles.rectangleDiv} />
+      <div className={styles.agreeToTermsContainer}>
+        <i className={styles.agreeTo}>Agree to</i>
+        <b>{` Terms & Conditions`}</b>
+      </div>
+      <div className={styles.macbookPro147Child1} />
+      <div className={styles.macbookPro147Child2} />
+      <div className={styles.macbookPro147Child3} />
+      <button className={styles.login} data-animate-on-scroll>
+        Login
+      </button>
+      <b className={styles.back}>Back</b>
+    </div>
+  );
+};
+
+export default MacBookPro147;
